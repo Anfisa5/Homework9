@@ -14,7 +14,7 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-   @org.junit.jupiter.api.Test
+   @Test
     //проверка работы конструктора 2 + метода переключения Prev
     public void testMethodPrev() {
         Radio radio = new Radio(30);
@@ -226,7 +226,7 @@ public class RadioTest {
         // создаем переменную уровень звука и кладем в нее объект
         Radio volume = new Radio();
 
-        volume.setCurrentVolume(11);
+        volume.setCurrentVolume(101);
 
         // проверка действительно ли текущий уровень звука 0
         int expected = 0;
@@ -289,13 +289,13 @@ public class RadioTest {
         // создаем переменную уровень звука и кладем в нее объект
         Radio volume = new Radio();
 
-        // попробуем положить максимальный уровнь громкости 10
-        volume.setCurrentVolume(10);
+        // попробуем положить максимальный уровнь громкости 100
+        volume.setCurrentVolume(100);
 
         volume.increaseVolume();
 
-        // проверка действительно ли текущий уровень звука 10
-        int expected = 10;
+        // проверка действительно ли текущий уровень звука 100
+        int expected = 100;
         int actual = volume.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
