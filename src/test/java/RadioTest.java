@@ -3,6 +3,39 @@ import org.junit.jupiter.api.Test;
 import ru.netology.Radio;
 
 public class RadioTest {
+@Test
+    //проверка работы конструктора 2 + метода переключения Next
+    public void test2() {
+        Radio radio = new Radio(30);
+        radio.setCurrentRadioStation(15);
+        radio.next();
+        int expected = 16;
+        int actual = radio.getCurrentRadioStation();
+        Assertions.assertEquals(expected, actual);
+    }
+
+   @Test
+    //проверка работы конструктора 2 + метода переключения Prev
+    public void testMethodPrev() {
+        Radio radio = new Radio(30);
+        radio.setCurrentRadioStation(15);
+        radio.prev();
+        int expected = 14;
+        int actual = radio.getCurrentRadioStation();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    //проверка работы конструктора
+    public void test1() {
+        Radio radio = new Radio(30);
+        radio.setCurrentRadioStation(29);
+        int expected = 29;
+        int actual = radio.getCurrentRadioStation();
+        Assertions.assertEquals(expected, actual);
+
+    }
+
     @Test
     // 1.Номер текущей радиостанции может принимать значения только в пределах от 0 до 9.
     //4.Клиент должен иметь возможность выставлять номер радиостанции через прямое указание её номера.
@@ -193,7 +226,7 @@ public class RadioTest {
         // создаем переменную уровень звука и кладем в нее объект
         Radio volume = new Radio();
 
-        volume.setCurrentVolume(11);
+        volume.setCurrentVolume(101);
 
         // проверка действительно ли текущий уровень звука 0
         int expected = 0;
@@ -256,13 +289,13 @@ public class RadioTest {
         // создаем переменную уровень звука и кладем в нее объект
         Radio volume = new Radio();
 
-        // попробуем положить максимальный уровнь громкости 10
-        volume.setCurrentVolume(10);
+        // попробуем положить максимальный уровнь громкости 100
+        volume.setCurrentVolume(100);
 
         volume.increaseVolume();
 
-        // проверка действительно ли текущий уровень звука 10
-        int expected = 10;
+        // проверка действительно ли текущий уровень звука 100
+        int expected = 100;
         int actual = volume.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);

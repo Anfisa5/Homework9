@@ -2,32 +2,57 @@ package ru.netology;
 
 public class Radio {
 
+   //переменная для количества радиостанций
+    private int number = 10;
 
-    // ТЕКУЩАЯ РАДИОСТАНЦИЯ
+    //переменная для радиостанции с максимальным номером
+    private int maxRadioStation = number - 1;
+
+    //переменную для минимальной радиостанции
+    private int minRadioStation = 0;
+
+    //переменная для текущей радиостанции
     private int currentRadioStation;
 
-    public int getCurrentRadioStation() {
+    // переменная для громкости звука
+    private int currentVolume;
 
+    // конструктор без параметров
+    public Radio() {
+    }
+
+    // конструктор с параметром количество радиостанций
+    public Radio(int number) {
+        this.maxRadioStation = number - 1;
+    }
+
+    public int getCurrentRadioStation() {
         return currentRadioStation;
     }
 
-    // 1.Номер текущей радиостанции может принимать значения только в пределах от 0 до 9.
-
-    public void setCurrentRadioStation(int newCurrentRadioStationStation) {
-
-        if (newCurrentRadioStationStation < 0) {
-            return;
-        }
-        if (newCurrentRadioStationStation > 9) {
-            return;
-        }
-        this.currentRadioStation = newCurrentRadioStationStation;
+    public int getCurrentVolume() {
+        return currentVolume;
     }
 
-    // 2.МЕТОД NEXT: если текущая радиостанция 9 и клиент нажал на кнопку next на пульте,то текущей должна стать 0.
+
+    //ИНФОРМАЦИЯ ДЛЯ ТЕКУЩЕЙ РАДИОСТАНЦИИ
+    // 1.Номер текущей радиостанции изменяется в пределах от 0 до количества радиостанций не включительно.
+
+    public void setCurrentRadioStation(int currentRadioStation) {
+
+        if (currentRadioStation < minRadioStation) {
+            return;
+        }
+        if (currentRadioStation > maxRadioStation) {
+            return;
+        }
+        this.currentRadioStation = currentRadioStation;
+    }
+
+    // 2.МЕТОД NEXT: если текущая радиостанция 9 и клиент нажал на кнопку next на пульте, то текущей должна стать 0.
     // В остальных случаях при нажатии на эту же кнопку радио переключается просто на следующую станцию.
     public void next() {
-        if (currentRadioStation < 9) {
+        if (currentRadioStation < maxRadioStation) {
             currentRadioStation++;
         } else {
             currentRadioStation = 0;
@@ -38,33 +63,25 @@ public class Radio {
     // в остальных случаях радио переключается просто на предыдущую станцию.
     public void prev() {
 
-        if (currentRadioStation > 0) {
+        if (currentRadioStation > minRadioStation) {
             currentRadioStation--;
         } else {
-            currentRadioStation = 9;
+            currentRadioStation = maxRadioStation;
         }
     }
-
 
     // 4.Клиент должен иметь возможность выставлять номер радиостанции через прямое указание её номера.
     // Для этого подойдёт один метод-сеттер с проверкой на допустимость номера станции.
     // см.п.1 <<ТЕКУЩАЯ РАДИОСТАНЦИЯ>>
 
 
-    // УРОВЕНЬ ГРОМКОСТИ ЗВУКА
-    private int currentVolume;
-
-    public int getCurrentVolume() {
-        return currentVolume;
-    }
-
-
-    // 1.Клиент должен иметь возможность увеличивать и уменьшать уровень громкости звука в пределах от 0 до 10
+    //ИНФОРМАЦИЯ ДЛЯ УРОВНЯ ГРОМКОСТИ
+    // 1.Клиент должен иметь возможность увеличивать и уменьшать уровень громкости звука в пределах от 0 до 100
     public void setCurrentVolume(int newCurrentVolume) {
         if (newCurrentVolume < 0) {
             return;
         }
-        if (newCurrentVolume > 10) {
+        if (newCurrentVolume > 100) {
             return;
         }
         this.currentVolume = newCurrentVolume;
@@ -73,7 +90,7 @@ public class Radio {
     //2. МЕТОД УВЕЛИЧЕНИЯ ГРОМКОСТИ ЗВУКА НА ОДИН: если уровень громкости звука достиг максимального значения,
     //то дальнейшее нажатие на +, не должно ни к чему приводить.
     public void increaseVolume() {
-        if (currentVolume < 10) {
+        if (currentVolume < 100) {
             currentVolume = currentVolume + 1;
         }
     }
