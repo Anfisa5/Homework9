@@ -3,6 +3,39 @@ import org.junit.jupiter.api.Test;
 import ru.netology.Radio;
 
 public class RadioTest {
+@Test
+    //проверка работы конструктора 2 + метода переключения Next
+    public void test2() {
+        Radio radio = new Radio(30);
+        radio.setCurrentRadioStation(15);
+        radio.next();
+        int expected = 16;
+        int actual = radio.getCurrentRadioStation();
+        Assertions.assertEquals(expected, actual);
+    }
+
+   @org.junit.jupiter.api.Test
+    //проверка работы конструктора 2 + метода переключения Prev
+    public void testMethodPrev() {
+        Radio radio = new Radio(30);
+        radio.setCurrentRadioStation(15);
+        radio.prev();
+        int expected = 14;
+        int actual = radio.getCurrentRadioStation();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    //проверка работы конструктора
+    public void test1() {
+        Radio radio = new Radio(30);
+        radio.setCurrentRadioStation(29);
+        int expected = 29;
+        int actual = radio.getCurrentRadioStation();
+        Assertions.assertEquals(expected, actual);
+
+    }
+
     @Test
     // 1.Номер текущей радиостанции может принимать значения только в пределах от 0 до 9.
     //4.Клиент должен иметь возможность выставлять номер радиостанции через прямое указание её номера.
